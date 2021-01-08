@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecr-deployment
+  labels:
+    app: ecr-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ecr-app
+  template:
+    metadata:
+      labels:
+        app: ecr-app
+    spec:
+      containers:
+      - name: ecr-app
+        # example image_id.ecr.your_region.amazonaws.com/image_name
+        image: <your_aws_ecr_image>
+        ports:
+        - containerPort: 80
